@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+       
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+
+
+    <h1>Αλλαγή Οφειλής (Εξουσιοδότηση)</h1>
+
+<a href="index.html">Αρχική</a>
+
+<link rel="stylesheet" href="AllagiOfeilies-Exousiodotisi.css">
+
+<br>
+
+<p> <span id="fysPro">Φυσικό Πρόσωπο: </span> <b> Paperless</b> με: αρ. εγγραφής, αρ. ταυτότητας/ARC/διαβατήριο, ημ. γέννησης, ονοματεπώνυμο<br><br>
+<span id="nomPro"> Νομικό Πρόσωπο: </span> <b> Paperless</b> με: ( *νόμιμος εκπρόσωπος εταιρίας?*(όνομα για αναφορά στο νομικό), επωνυμία εταιρίας, αρ. εγγραφής, αρ. εγγ. εταιρίας)</p>
+
+<button id="kritiriaButton" onclick="kritiria()" >Κριτήρια:</button> 
+
+<div id="kritiriaDiv" style="display: none;" > <br>
+
+    <u>Κριτήρια:</u><br>
+    • Να έχει εκδοθεί η ανανέωση <br>
+    • Να είναι απλήρωτη η ανανέωση <br>
+    • Να μην υπάρχει αντιλογισμός <br> <br>
+
+    <u>Σημεία Προσοχής:</u> <br>
+    • <b>*** Κάτοχος της κάρτας? *** <br></b>
+    • Πάγια για να πάρει το 10% (αν δεν επωφελείται ήδη) <br>
+    <span id="indent"> > εάν δεν, βάζουμε την έκπτωση από το Ask Me </span><br>
+    • Δέσμευση 0.01 σεντ  <br>
+    • Παύση καταγραφής της κλήσης κατά την διάρκεια που μας λένε τα στοιχεία της κάρτας στο ONE<br> <br>
+    • Αν είχε γίνει "προσωρινή ανάκληση", κάνουμε εξουσιοδότηση και όχι μεταβολή πάγιας <br>
+    • Ελέγχω τις εκπτώσεις από e-customer για να δούμε αν έχει την έκπτωση. Αν έχει ήδη την έκπτωση, το συμπληρώνω στο αίτημα μου. <br>
+
+
+
+
+</div>
+
+
+<div id="buttons">
+    <button id="individual" onclick="indSelect()">Φυσικό Πρόσωπο</button>
+    <button id="legalEntity" onclick="legSelect()">Νομικό Πρόσωπο</button>
+    <button id="other" onclick="othSelect()">Άλλο Πρόσωπο</button>
+</div>
+
+<!-- ΦΥΣΙΚΟ ΠΡΟΣΩΠΟ -->
+
+<div id="ifIndividual" style="display: none;">
+
+
+    <div id="pedia" class="pediaButtons">
+        <label for="eponimo" >Επώνυμο:</label>
+        <input type="text" id="eponimo" name="Name" style='text-transform:uppercase' >
+        <label for="symvolaio">Αρ. Συμβολαίου:</label>
+        <input type="number" id="policyNo" name="Name">
+        <label for="date">Ημερομηνία Έναρξης Αλλαγής:</label>
+        <input type="date"  id="date" name="Name"><span> (μετά τις 12μμ η κλήση, +1 μέρα)</span> <br>
+        <label for="psifia4">4 τελ. ψηφία:</label>
+        <input type="tel" id="psifia4" name="Name" maxlength="4" >
+        <label for="imLixis">Ημ. λήξης:</label>
+        <input type="tel" id="imLixis" name="Name" maxlength="4">
+        <label for="regNo">Αρ. Εγγραφής:</label>
+        <input type="text" id="regNo" name="Name" maxlength="6" style='text-transform:uppercase'>
+        <label for="fullName">Ονοματεπώνυμο:</label>
+        <input type="text" id="fullName" name="Name" style='text-transform:uppercase'> <br>
+
+        <div class="etairKart" >
+            <label for="legalRegNo">Όνομα Εταιρίας:</label>
+        <input type="text" id="legalRegNo" name="Name" style='text-transform:uppercase'> <i><span> (μόνο για κάτοχο εταιρικής κάρτας)</span></i>
+        </div>
+        
+    
+    
+       <button id="ektelesi" onclick="ektel()">Εκτέλεση</button> <br>
+    </div> 
+        
+            <br> <br>
+            <h2>Κάτοχος κάρτας + Ιδιοκτήτης οχήματος:</h2>
+
+            <!-- <p>Γίνεται <b>ΑΝΑΘΕΣΗ.</b></p> -->
+            <p><u>ΑΙΤΗΜΑ ΕΞΥΠΗΡΕΤΗΣΗΣ:</u></p>
+            <p> Αλλαγές-> Εξουσιοδότηση-> Περιγραφή: Δ.Ν. με κάτοχο και ιδιοκτήτη, από <b><span id="dateSpan" >...</span> </b>.</p>
+        
+            <!-- <p id="nomiko"><b>- Μόνο όταν γίνει ο προασφαλιστικός έλεγχος, διαβάζουμε νομικό.</b></p> -->
+            <p><u>ΝΟΜΙΚΟ ΚΕΙΜΕΝΟ</u>: 
+            <br>
+            <br>
+            <img id="cyFlag" src="images/Greek.png" alt="">  <br>
+            Αγαπητέ Κύριε/α <b><span id="eponimoSpan">....</span></b> , <br>
+            Σας ενημερώνουμε ότι για τη δική σας ασφάλεια, η κλήση μας καταγράφεται. <br>
+            Δηλώσατε ότι επιθυμείτε το συμβόλαιο με αριθμό <b><span id="policySpan">....</span></b>  και αριθμό εγγραφής <b><span id="regSpan">....</span></b> , <br>
+            να εξοφλείται από την κάρτα με τα τέσσερα τελευταία ψηφία <b><span id="psifia4Span" >....</span></b> και ημερομηνία λήξης <b><span id="imLixisSpan">....</span></b>. <br>
+            Επιπλέον, η εταιρία "Interamerican Ελληνική Ασφαλιστική Εταιρία" θα εισπράττει κάθε ασφάλιστρο για το συμβόλαιο σας αυτό, μέσω της πάραπάνω κάρτας, καθώς και όποιας <br>
+            κάρτας εκδίδεται σε αντικατάσταση της, μέχρι ανακλήσεως από μέρους σας της σχετικής εξουσιοδότησης. Η ανάκληση θα πρέπει να γίνει 15 ημέρες πριν την ημερομηνία οφειλής. <br>
+            <span class="standingOrd">{Ταυτόχρονα θα προστεθεί στο συμβόλαιο σας η έκπτωση της κάρτας.}</span> <br>
+            Συμφωνείτε να προχωρήσουμε στην αλλαγή;</p> <br>
+        
+            <img id="ukFlag" src="images/English.png" alt=""> <br> Dear Mr/Ms <b><span id="eponimoSpan2">....</span></b> ,<br>
+            We would like to inform you that this call is being recorded for security purposes. <br>
+            You have requested to charge the card with the last 4 digits <b><span  id="psifia4Span2">....</span></b> and expiry date <b><span id="imLixisSpan2">....</span></b>, as the default payment method for <br>
+            the policy with number <b><span id="policySpan2">....</span></b> and registration number <b><span id="regSpan2">....</span></b> as from the  <b><span id="dateSpan2">....</span></b>. <br>
+            Additionally, the company "Interamerican Hellenic Insurance Company" will collect through the aforementioned card or any other card issued in its place, any future premium for this policy, <br>
+            until the revocation of the card from your part. The revocation can be requested up to 15 days before the renewal date of the contract. <br> <span class="standingOrd" >{At the same time, the discount of the card will be added to your contract.} </span> <br>
+            Do you agreee to proceed with this alteration? <br>
+        
+        
+            <!-- <p><u>ΑΙΤΗΜΑ ΕΞΥΠΗΡΕΤΗΣΗΣ:</u></p>
+            Αλλαγές -> Ασφαλιζόμενο Κεφάλαιο -> Περιγραφή: Δ.Ν., Αξία σε €<span id="axiaSpan4">....</span>, ισχύει από <span id="dateSpan4">....</span>. -->
+
+    
+
+
+        
+            <br><h2>Κάτοχος κάρτας <u>ΜΟΝΟ</u>:</h2><br>
+        
+            <p><u>ΝΟΜΙΚΟ ΚΕΙΜΕΝΟ</u>: <br><br>
+                <img id="cyFlag" src="images/Greek.png" alt="">  <br>
+                Αγαπητέ Κύριε/α <b><span id="eponimoSpan3">....</span></b> , <br>
+                Σας ενημερώνουμε ότι για τη δική σας ασφάλεια, η κλήση μας καταγράφεται. <br>
+                Δηλώσατε ότι επιθυμείτε το συμβόλαιο με αριθμό <b><span id="policySpan3">....</span></b>  και αριθμό εγγραφής <b><span id="regSpan3">....</span></b> στο όνομα <b><span id="fullNameSpan" >....</span></b>, <br>
+                να εξοφλείται από την κάρτα με τα τέσσερα τελευταία ψηφία <b><span  id="psifia4Span3" >....</span></b> και ημερομηνία λήξης <b><span id="imLixisSpan3">....</span></b>. <br>
+                Επιπλέον, η εταιρία "Interamerican Ελληνική Ασφαλιστική Εταιρία" θα εισπράττει κάθε ασφάλιστρο για το συμβόλαιο σας αυτό, μέσω της πάραπάνω κάρτας, καθώς και όποιας <br>
+                κάρτας εκδίδεται σε αντικατάσταση της, μέχρι ανακλήσεως από μέρους σας της σχετικής εξουσιοδότησης. Η ανάκληση θα πρέπει να γίνει 15 ημέρες πριν την ημερομηνία οφειλής. <br>
+                <span class="standingOrd">{Ταυτόχρονα θα προστεθεί στο συμβόλαιο σας η έκπτωση της κάρτας.}</span> <br>
+                Συμφωνείτε να προχωρήσουμε στην αλλαγή;</p> <br>
+            
+                <img id="ukFlag" src="images/English.png" alt=""> <br> Dear Mr/Ms <b><span id="eponimoSpan4">....</span></b> ,<br>
+                We would like to inform you that this call is being recorded for security purposes. <br>
+                You have requested to charge the card with the last 4 digits <b><span  id="psifia4Span4" >....</span></b> and expiry date <b><span id="imLixisSpan4">....</span></b>, as the default payment method for <br>
+                the policy with number <b><span id="policySpan4">....</span></b> and registration number <b><span id="regSpan4">....</span></b> under the name <b><span id="fullNameSpan2" >....</span></b> as from the  <b><span id="dateSpan3">....</span></b>. <br>
+                Additionally, the company "Interamerican Hellenic Insurance Company" will collect through the aforementioned card or any other card issued in its place, any future premium for this policy, <br>
+                until the revocation of the card from your part. The revocation can be requested up to 15 days before the renewal date of the contract. <br> <span class="standingOrd" >{At the same time, the discount of the card will be added to your contract.} </span> <br>
+                Do you agreee to proceed with this alteration? <br> <br>
+
+                <br><h2>Διαφορετικός κάτοχος - <u>Εταιρική κάρτα</u>:</h2><br>
+
+                <p><u>ΝΟΜΙΚΟ ΚΕΙΜΕΝΟ</u>: <br><br>
+                    <img id="cyFlag" src="images/Greek.png" alt="">  <br>
+                    Αγαπητέ Κύριε/α <b><span id="eponimoSpan5">....</span></b> , <br>
+                    Σας ενημερώνουμε ότι για τη δική σας ασφάλεια, η κλήση μας καταγράφεται. <br>
+                    Δηλώσατε ότι είστε εξουσιοδοτημένος από την εταιρία <b><span id="legalRegNoSpan" >....</span></b> να χρησιμοποιείται την κάρτα η οποία είναι στο όνομα της και επιθυμείτε το συμβόλαιο με αριθμό <b><span id="policySpan5">....</span></b>  και αριθμό εγγραφής <b><span id="regSpan5">....</span></b> στο όνομα <b><span id="fullNameSpan3" >....</span></b>, <br>
+                    να εξοφλείται από την κάρτα με τα τέσσερα τελευταία ψηφία <b><span  id="psifia4Span5" >....</span></b> και ημερομηνία λήξης <b><span id="imLixisSpan5">....</span></b>. <br>
+                    Επιπλέον, η εταιρία "Interamerican Ελληνική Ασφαλιστική Εταιρία" θα εισπράττει κάθε ασφάλιστρο για το συμβόλαιο σας αυτό, μέσω της πάραπάνω κάρτας, καθώς και όποιας <br>
+                    κάρτας εκδίδεται σε αντικατάσταση της, μέχρι ανακλήσεως από μέρους σας της σχετικής εξουσιοδότησης. Η ανάκληση θα πρέπει να γίνει 15 ημέρες πριν την ημερομηνία οφειλής. <br>
+                    <span class="standingOrd">{Ταυτόχρονα θα προστεθεί στο συμβόλαιο σας η έκπτωση της κάρτας.}</span> <br>
+                    Συμφωνείτε να προχωρήσουμε στην αλλαγή;</p> <br>
+                
+                    <img id="ukFlag" src="images/English.png" alt=""> <br> Dear Mr/Ms <b><span id="eponimoSpan6">....</span></b> ,<br>
+                    We would like to inform you that this call is being recorded for security purposes. <br>
+                    You have stated that you are authorised by the company <b><span id="legalRegNoSpan2" >....</span></b> to use and charge the card in its name, with the last 4 digits <b><span  id="psifia4Span6" >....</span></b> and expiry date <b><span id="imLixisSpan6">....</span></b>, as the default payment method for <br>
+                    the policy with number <b><span id="policySpan6">....</span></b> and registration number <b><span id="regSpan6">....</span></b> under the name <b><span id="fullNameSpan4" >....</span></b> as from the  <b><span id="dateSpan4">....</span></b>. <br>
+                    Additionally, the company "Interamerican Hellenic Insurance Company" will collect through the aforementioned card or any other card issued in its place, any future premium for this policy, <br>
+                    until the revocation of the card from your part. The revocation can be requested up to 15 days before the renewal date of the contract. <br> <span class="standingOrd" >{At the same time, the discount of the card will be added to your contract.} </span> <br>
+                    Do you agreee to proceed with this alteration? <br> <br>
+        
+    </div>
+    
+
+    
+
+
+
+</div>
+
+<!-- ΝΟΜΙΚΟ ΠΡΟΣΩΠΟ --> 
+
+<div id="ifLegalEntity" style="display: none;">
+
+
+    <div id="pedia" class="pediaButtons">
+        <label for="eponimo" >Επώνυμο:</label>
+        <input type="text" id="eponimoNom" name="Name" style='text-transform:uppercase' >
+        <label for="symvolaio">Αρ. Συμβολαίου:</label>
+        <input type="number" id="policyNoNom" name="Name">
+        <label for="date">Ημερομηνία Έναρξης Αλλαγής:</label>
+        <input type="date"  id="dateNom" name="Name"><span> (μετά τις 12μμ η κλήση, +1 μέρα)</span> <br>
+        <label for="psifia4">4 τελ. ψηφία:</label>
+        <input type="tel" id="psifia4Nom" name="Name" maxlength="4" >
+        <label for="imLixis">Ημ. λήξης:</label>
+        <input type="tel" id="imLixisNom" name="Name" maxlength="4">
+        <label for="regNo">Αρ. Εγγραφής:</label>
+        <input type="text" id="regNoNom" name="Name" maxlength="6" style='text-transform:uppercase'>
+        <label for="fullName">Ονοματεπώνυμο:</label>
+        <input type="text" id="fullNameNom" name="Name" style='text-transform:uppercase'> <br>
+        <label for="legalRegNo">Όνομα Εταιρίας:</label>
+        <input type="text" id="legalRegNom" name="Name" style='text-transform:uppercase'> 
+    
+    
+       <button id="ektelesi" onclick="ektelNom()">Εκτέλεση</button> <br>
+    </div> 
+        
+            <br> <br>
+            <h2>Κάτοχος κάρτας (όνομα ιδιοκτήτη στην κάρτα):</h2>
+
+            <!-- <p>Γίνεται <b>ΑΝΑΘΕΣΗ.</b></p> -->
+            <p><u>ΑΙΤΗΜΑ ΕΞΥΠΗΡΕΤΗΣΗΣ:</u></p>
+            <p> Αλλαγές-> Εξουσιοδότηση-> Περιγραφή: Δ.Ν. με κάτοχο και ιδιοκτήτη, από <b><span id="dateSpanNom" >....</span> </b>.</p>
+        
+            <!-- <p id="nomiko"><b>- Μόνο όταν γίνει ο προασφαλιστικός έλεγχος, διαβάζουμε νομικό.</b></p> -->
+            <p><u>ΝΟΜΙΚΟ ΚΕΙΜΕΝΟ</u>: 
+            <br>
+            <br>
+            <img id="cyFlag" src="images/Greek.png" alt="">  <br>
+            Αγαπητέ Κύριε/α <b><span id="eponimoNomSpan">....</span></b> , <br>
+            Σας ενημερώνουμε ότι για τη δική σας ασφάλεια, η κλήση μας καταγράφεται. <br>
+            Δηλώσατε ότι επιθυμείτε το συμβόλαιο με αριθμό <b><span id="policyNomSpan">....</span></b>  και αριθμό εγγραφής <b><span id="regNoNomSpan">....</span></b> στην εταιρία <b><span id="legalRegNomSpan">....</span></b> , <br>
+            να εξοφλείται από <b><span id="dateSpanNom4" >....</span> </b>, εφάπαξ από την κάρτα με τα τέσσερα τελευταία ψηφία <b><span id="psifia4NomSpan">....</span></b> και ημερομηνία λήξης <b><span id="imLixisNomSpan">....</span></b>. <br>
+            Επιπλέον, η εταιρία "Interamerican Ελληνική Ασφαλιστική Εταιρία" θα εισπράττει κάθε ασφάλιστρο για το συμβόλαιο σας αυτό, μέσω της πάραπάνω κάρτας, καθώς και όποιας <br>
+            κάρτας εκδίδεται σε αντικατάσταση της, μέχρι ανακλήσεως από μέρους σας της σχετικής εξουσιοδότησης. Η ανάκληση θα πρέπει να γίνει 15 ημέρες πριν την ημερομηνία οφειλής. <br>
+            <span class="standingOrd">{Ταυτόχρονα θα προστεθεί στο συμβόλαιο σας η έκπτωση της κάρτας.}</span> <br>
+            Συμφωνείτε να προχωρήσουμε στην αλλαγή;</p> <br>
+        
+            <img id="ukFlag" src="images/English.png" alt=""> <br> Dear Mr/Ms <b><span id="eponimoNomSpan2">....</span></b> ,<br>
+            We would like to inform you that this call is being recorded for security purposes. <br>
+            You have requested to charge the card with the last 4 digits <b><span id="psifia4NomSpan2">....</span></b> and expiry date <b><span id="imLixisNomSpan2">....</span></b>, as the default payment method for <br>
+            the policy with number <b><span id="policyNomSpan2">....</span></b> and registration number <b><span id="regNoNomSpan2">....</span></b> under the company <b><span id="legalRegNomSpan2">....</span></b> as from the  <b><span id="dateSpanNom2">....</span></b>. <br>
+            Additionally, the company "Interamerican Hellenic Insurance Company" will collect through the aforementioned card or any other card issued in its place, any future premium for this policy, <br>
+            until the revocation of the card from your part. The revocation can be requested up to 15 days before the renewal date of the contract. <br> <span class="standingOrd" >{At the same time, the discount of the card will be added to your contract.} </span> <br>
+            Do you agreee to proceed with this alteration? <br>
+        
+        
+            <!-- <p><u>ΑΙΤΗΜΑ ΕΞΥΠΗΡΕΤΗΣΗΣ:</u></p>
+            Αλλαγές -> Ασφαλιζόμενο Κεφάλαιο -> Περιγραφή: Δ.Ν., Αξία σε €<span id="axiaSpan4">....</span>, ισχύει από <span id="dateSpan4">....</span>. -->
+
+    
+
+
+        
+            <br><h2>Άλλος κάτοχος - <u>Εταιρική κάρτα</u>:</h2><br>
+        
+            <p><u>ΝΟΜΙΚΟ ΚΕΙΜΕΝΟ</u>: <br><br>
+                <img id="cyFlag" src="images/Greek.png" alt="">  <br>
+                Αγαπητέ Κύριε/α <b><span id="eponimoNomSpan3">....</span></b> , <br>
+                Σας ενημερώνουμε ότι για τη δική σας ασφάλεια, η κλήση μας καταγράφεται. <br>
+                Δηλώσατε ότι είστε εξουσιοδοτημένος από την εταιρία <b><span id="legalRegNomSpan3">....</span></b> να χρησιμοποιείται την κάρτα η οποία είναι στο όνομα της και επιθυμείτε το συμβόλαιο με αριθμό <b><span id="policyNomSpan3">....</span></b>  και αριθμό εγγραφής <b><span id="regNoNomSpan3">....</span></b> στο όνομα <b><span id="fullNameNomSpan">....</span></b>, <br>
+                να εξοφλείται από την κάρτα με τα τέσσερα τελευταία ψηφία <b><span id="psifia4NomSpan3">....</span></b> και ημερομηνία λήξης <b><span id="imLixisNomSpan3">....</span></b>. <br>
+                Επιπλέον, η εταιρία "Interamerican Ελληνική Ασφαλιστική Εταιρία" θα εισπράττει κάθε ασφάλιστρο για το συμβόλαιο σας αυτό, μέσω της πάραπάνω κάρτας, καθώς και όποιας <br>
+                κάρτας εκδίδεται σε αντικατάσταση της, μέχρι ανακλήσεως από μέρους σας της σχετικής εξουσιοδότησης. Η ανάκληση θα πρέπει να γίνει 15 ημέρες πριν την ημερομηνία οφειλής. <br>
+                <span class="standingOrd">{Ταυτόχρονα θα προστεθεί στο συμβόλαιο σας η έκπτωση της κάρτας.}</span> <br>
+                Συμφωνείτε να προχωρήσουμε στην αλλαγή;</p> <br>
+            
+                <img id="ukFlag" src="images/English.png" alt=""> <br> Dear Mr/Ms <b><span id="eponimoNomSpan4">....</span></b> ,<br>
+                We would like to inform you that this call is being recorded for security purposes. <br>
+                You have stated that you are authorised by the company <b><span id="legalRegNomSpan4">....</span></b> to use and charge the card in its name, with the last 4 digits <b><span id="psifia4NomSpan4">....</span></b> and expiry date <b><span id="imLixisNomSpan4">....</span></b>, as the default payment method for <br>
+                the policy with number <b><span id="policyNomSpan4">....</span></b> and registration number <b><span id="regNoNomSpan4">....</span></b> under the name <b><span id="fullNameNomSpan2">....</span></b> as from the  <b><span id="dateSpanNom3">....</span></b>. <br>
+                Additionally, the company "Interamerican Hellenic Insurance Company" will collect through the aforementioned card or any other card issued in its place, any future premium for this policy, <br>
+                until the revocation of the card from your part. The revocation can be requested up to 15 days before the renewal date of the contract. <br> <span class="standingOrd" >{At the same time, the discount of the card will be added to your contract.} </span> <br>
+                Do you agreee to proceed with this alteration? <br> <br>
+
+
+
+
+
+</div>
+
+<!-- ΑΛΛΟ ΠΡΟΣΩΠΟ -->
+
+<div id="ifOther" style="display: none;">
+
+
+    <p>Ενημερώνουμε να μας καλέσει ο ιδιοκτήτης.</p>
+
+    <p><b>Εναλλακτικά:</b></p>
+
+    <p>
+        1. Να αποσταλεί email αλλαγής στο motor@anytimeonline.com.cy όπου θα πρέπει να αναγράφεται ο αριθμός εγγραφής ή <br>
+        αριθμός συμβολαίου από το ΔΗΛΩΜΕΝΟ email. (δεν αναφέρουμε εμείς το δηλωμένο email, μπορούμε μόνο να το επιβεβαιώσουμε.) <br><br>
+        2. Αν στείλει email θα πάρει auto reply και θα πάρει την πρόσθετη πράξη σε 2 εργάσιμες. <br><br>
+        3.Εάν μας στείλει απο άλλο email θα πρέπει να επισυνάψει ταυτότητα ιδιοκτήτη μπροστά και πίσω.
+    </p>
+
+
+
+</div>
+
+
+<script src="AllagiOfeilies-Exousiodotisi.js"></script>    
+</body>
+</html

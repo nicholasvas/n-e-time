@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script src="allagiDiefthinsis.js"></script>
+    <link rel="stylesheet" href="allagiDiefthinsis.css">
+
+</head>
+<body>
+
+    <h1>Αλλαγή Διεύθυνσης</h1>
+
+    <a href="index.html">Αρχική</a>
+
+    <p> <span id="fysPro">Φυσικό Πρόσωπο: </span> <b> Paperless</b> με: αρ. εγγραφής, αρ. ταυτότητας/ARC/διαβατήριο, ημ. γέννησης, ονοματεπώνυμο<br>
+        <span id="nomPro"> Νομικό Πρόσωπο: </span> <b> Paperless</b> με: ( *νόμιμος εκπρόσωπος εταιρίας?*(όνομα για αναφορά στο νομικό), επωνυμία εταιρίας, αρ. εγγραφής, αρ. εγγ. εταιρίας)</p>
+        <span> <b>***Προσοχή</b>: Η νέα διεύθυνση πρέπει να μείνει στην γλώσσα που είναι ( π.χ. δεν μπορεί να αλλάξει από Λατινικούς χαρακτήρες σε Ελληνικούς)</span> <br> <br>
+
+        <button id="kritiriaButton" onclick="kritiria()" >Κριτήρια:</button> 
+
+<div id="kritiriaDiv" className="kriDiv" style="display: none;" > <br>
+
+    • Η διεύθυνση να είναι η <b>μόνιμη κατοικία</b> και να αναγράφεται σε <b>λογαριασμό κοινής ωφελείας</b>. <br> <br>
+    • Για αλλαγή επαρχίας, τότε να σταλεί πρώτα από το καταχωρημένο email ο <b>λογαριασμός κοινής ωφελείας</b> και το αίτημα αλλαγής με αρ. εγγραφής ή αρ. συμβολαίου <br>
+      <span>- - - - - ></span><span id="aitima"> <u>Αίτημα εξυπηρέτησης</u>: ΕΝΗΜΕΡΩΣΗ -> ΔΙΑΔΙΚΑΣΙΑ ΑΛΛΑΓΩΝ -> Περιγραφή: Δεν Δ.Ν., ζήτησα να σταλεί ο λογαριασμός κοινής ωφελείας.</span> <br>
+      * το νομικό διαβάζεται <b>ΜΟΝΟ</b>  όταν έχουμε τον λογαριασμό και έχουμε σχετικό αίτημα από Back Office* <br> <br>
+    • Αν στείλει απο <b><u>μη καταχωρημένο email</u></b>, θέλουμε και ταυτότητα. Σε Νομικό Πρόσωπο θέλουμε <b><u>πιστοποιητικό σύστασης εταιρίας</u></b> ΚΑΙ <b><u>ταυτότητα νόμιμου εκπρόσωπου</u></b>. <br> <br>
+    • Αν υπάρχει χρέωση λόγω της αλλαγής διεύθυνσης, θα ενημερωθεί τηλεφωνικά.
+
+</div>
+        
+        
+        
+        <div id="buttons">
+            <button id="individual" onclick="indSelect()">Φυσικό Πρόσωπο</button>
+            <button id="legalEntity" onclick="legSelect()">Νομικό Πρόσωπο</button>
+            <button id="other" onclick="othSelect()">Άλλο Πρόσωπο</button>
+        </div>
+        
+        <!-- ΦΥΣΙΚΟ ΠΡΟΣΩΠΟ -->
+        
+        <div id="ifIndividual" style="display: none;">
+        
+        
+            <div id="pedia" class="pediaButtons">
+                <label for="eponimo">Επώνυμο:</label>
+                <input type="text" id="epon" name="Name" style='text-transform:uppercase' >
+                <label for="symvolaio">Αρ. Συμβολαίου:</label>
+                <input type="number" id="policyNo" name="Name">
+                <label for="date"> Ημερομηνία Έναρξης Αλλαγής: </label>
+                <input type="date"  id="date" name="Name"><br>
+                <label for="regNo">Αρ. Εγγραφής</label>
+                <input type="text" id="regNo" name="Name" maxlength="6" style='text-transform:uppercase'>
+
+                <label for="odos">Οδός:</label>
+                <input type="text" id="odosID" name="Name" style='text-transform:uppercase' >
+
+                <label for="eparchia">Επαρχία:</label>
+                <select name="" id="eparchia">
+                    <option id="lefkosia">ΛΕΥΚΩΣΙΑ</option>
+                    <option id="lemesos">ΛΕΜΕΣΟΣ</option>
+                    <option id="larnaka">ΛΑΡΝΑΚΑ</option>
+                    <option id="paphos">ΠΑΦΟΣ</option>
+                    <option id="ammochostos">ΑΜΜΟΧΩΣΤΟΣ</option>
+                </select>
+                
+
+                <label for="tahKodikas">Ταχ. Κώδικας:</label>
+                <input type="number" id="tahKodikas" name="Name" >
+                
+                
+            
+            
+               <button id="ektelesi" onclick="ektel()">Εκτέλεση</button> 
+            </div>
+                
+        
+                    <br><br>
+                    <h3>Όταν <u>ΔΕΝ</u> αλλάζει η επαρχία:</h3>
+
+                    <p><u>ΑΙΤΗΜΑ ΕΞΥΠΗΡΕΤΗΣΗΣ:</u></p>
+                    <p> <p> ΑΛΛΑΓΕΣ-> ΔΙΕΥΘΥΝΣΗ -> Περιγραφή: <span id="aitima">  Δ.Ν., <b><span id="diefthinsiSpan">....</b>
+                        <img id="copyImg" src="images/copy.svg" alt="copy text image" onclick="copyText()">
+                    
+                    </span> <br> </span> 
+                    
+                    <p><u>ΝΟΜΙΚΟ ΚΕΙΜΕΝΟ</u>: 
+                    <br>
+                    <br>
+                    <img id="cyFlag" src="images/Greek.png" alt="">  <br>
+                    Αγαπητέ Κύριε/α <b><span id="eponimoSpan">....</span></b> , <br>
+                    Σας ενημερώνουμε ότι για τη δική σας ασφάλεια, η κλήση μας καταγράφεται. <br>
+                    Ζητήσατε στο συμβόλαιο με αριθμό <b><span id="policySpan">....</span></b>  και αριθμό εγγραφής <b><span id="regSpan">....</span></b> , <br>
+                    να πραγματοποιηθεί αλλαγή της μόνιμης κατοικίας σας σε <b><span id="odosSpan">....</span></b> επαρχία <b><span id="eparchiaSpan">....</span></b>, ταχυδρομικό κώδικα <b><span id="tkSpan">....</span></b>, η οποία <br>
+                    αναγράφεται σε λογαριασμό κοινής ωφελείας και τον οποίο η Interamerican έχει δικαίωμα να ζητήσει στα πλαίσια δειγματοληπτικού ελέγχου. <br>
+                    Συμφωνείτε να προχωρήσουμε στην αλλαγή;</p> <br>
+                
+                    <img id="ukFlag" src="images/English.png" alt=""> <br>
+                
+                    Dear Mr/Ms <b><span id="eponimoSpan2">....</span></b> ,<br>
+                    We would like to inform you that this call is being recorded for security purposes. <br>
+                    You have requested to change the address of your permanent residence for the policy number <b><span id="policySpan2">....</span></b>, <br>
+                    and registration number <b><span id="regSpan2">....</span></b> to <b><span id="odosSpan2">....</span></b> province <b><span id="eparchiaSpan2">....</span></b> and postal code <b><span id="tkSpan2">....</span></b>. The new address should be verified by a ultility bill, <br>
+                    a copy of which Interamerican Hellenic Insurance Company S.A. is authorised to request, as part of a sample audit. <br>
+                    Do you agreee to proceed with this alteration? <br>
+                
+                    <br>
+
+                    <br>
+                    <br>
+
+                    <h3>Όταν <u>αλλάζει</u> η επαρχία:</h3>
+
+                    <p id="nomiko"><b>- Εδώ προχωράμε μόνο όταν παραλάβουμε τον λογαριασμό κοινής ωφελίας και υπάρχει σχετικό αίτημα εξυπηρέτησης από το Back Office.</b></p>
+
+
+                    <p><u>ΑΙΤΗΜΑ ΕΞΥΠΗΡΕΤΗΣΗΣ:</u></p>
+                    <p> <p> ΑΛΛΑΓΕΣ-> ΔΙΕΥΘΥΝΣΗ -> Περιγραφή: Δ.Ν., <b><span id="diefthinsiSpan2">....</span></b>
+                
+                    <!-- <p id="nomiko"><b>- Μόνο όταν γίνει ο προασφαλιστικός έλεγχος, διαβάζουμε νομικό.</b></p> -->
+
+                    <p><u>ΝΟΜΙΚΟ ΚΕΙΜΕΝΟ</u>: 
+                    <br>
+                    <br>
+                    <img id="cyFlag" src="images/Greek.png" alt="">  <br>
+                    Αγαπητέ Κύριε/α <b><span id="eponimoSpan3">....</span></b> , <br>
+                    Σας ενημερώνουμε ότι για τη δική σας ασφάλεια, η κλήση μας καταγράφεται. <br>
+                    Ζητήσατε στο συμβόλαιο με αριθμό <b><span id="policySpan3">....</span></b>  και αριθμό εγγραφής <b><span id="regSpan3">....</span></b> , <br>
+                    να πραγματοποιηθεί αλλαγή της μόνιμης κατοικίας σας σε <b><span id="odosSpan3">....</span></b> επαρχία <b><span id="eparchiaSpan3">....</span></b>, ταχυδρομικό κώδικα <b><span id="tkSpan3">....</span></b>, από <b><span id="dateSpan">....</span></b>. <br>
+                    Συμφωνείτε να προχωρήσουμε στην αλλαγή;</p> <br>
+                
+                    <img id="ukFlag" src="images/English.png" alt=""> <br> Dear Mr/Ms <b><span id="eponimoSpan4">....</span></b> ,<br>
+                    We would like to inform you that this call is being recorded for security purposes. <br>
+                    You have requested to change the address of your permanent residence for the policy number <b><span id="policySpan4">....</span></b>, <br>
+                    and registration number <b><span id="regSpan4">....</span></b>to <b><span id="odosSpan4">....</span></b></span> province <b><span id="eparchiaSpan4">....</span></b> and postal code <b><span id="tkSpan4">....</span></b> as from the <b><span id="dateSpan2">....</span></b>. <br>
+                    Do you agreee to proceed with this alteration? <br>
+                
+                    <br>
+
+                    <!-- <p><u>ΑΙΤΗΜΑ ΕΞΥΠΗΡΕΤΗΣΗΣ:</u></p>
+                    Αλλαγές -> Ασφαλιζόμενο Κεφάλαιο -> Περιγραφή: Δ.Ν., Αξία σε €<span id="axiaSpan4">....</span>, ισχύει από <span id="dateSpan4">....</span>. -->
+        
+             <br>
+
+        
+        
+            </div>
+            
+        
+            
+        
+        
+        
+        </div>
+        
+        <!-- ΝΟΜΙΚΟ ΠΡΟΣΩΠΟ -->
+        
+        <div id="ifLegalEntity" style="display: none;">
+        
+        
+            <div id="pediaNom" className="pediaButtons">
+                <label for="eponimoNom">Επώνυμο:</label>
+                <input type="text" id="eponimoNom" name="Name" style='text-transform:uppercase' >
+                <label for="symvolaio">Αρ. Συμβολαίου:</label>
+                <input type="number" id="policyNoNom" name="Name">
+                <label for="date">Ημερομηνία Έναρξης Αλλαγής:</label>
+                <input type="date"  id="dateNom" name="Name"><br>
+                <label for="odos">Οδός:</label>
+                <input type="text" id="odosNom" name="Name" style='text-transform:uppercase' >
+
+                <label for="eparchiaNom">Επαρχία:</label>
+                <select name="" id="eparchiaNom">
+                    <option id="lefkosiaNom">ΛΕΥΚΩΣΙΑ</option>
+                    <option id="lemesosNom">ΛΕΜΕΣΟΣ</option>
+                    <option id="larnakaNom">ΛΑΡΝΑΚΑ</option>
+                    <option id="paphosNom">ΠΑΦΟΣ</option>
+                    <option id="ammochostosNom">ΑΜΜΟΧΩΣΤΟΣ</option>
+                </select>
+                
+
+                <label for="tahKodikasNom">Ταχ. Κώδικας:</label>
+                <input type="number" id="tahKodikasNom" name="Name" >
+                <label for="regNo">Αρ. Εγγραφής:</label>
+                <input type="text" id="regNoNom" name="Name" maxlength="6" style='text-transform:uppercase'>
+                <label for="legalRegNo">Όνομα Εταιρίας:</label>
+                <input type="text" id="legalRegNom" name="Name" style='text-transform:uppercase'>
+            
+            
+               <button id="ektelesiNom" onclick="ektelNom()">Εκτέλεση</button> 
+            </div>
+        
+            <br><br>
+        
+            <p>***Είστε νόμιμος εκπρόσωπος της εταιρίας;***</p>
+        
+            <h3>Όταν <u>ΔΕΝ</u> αλλάζει η επαρχία:</h3>
+        
+
+            <p><u>ΑΙΤΗΜΑ ΕΞΥΠΗΡΕΤΗΣΗΣ:</u></p>
+            <p> <p> ΑΛΛΑΓΕΣ-> ΔΙΕΥΘΥΝΣΗ -> Περιγραφή: Δ.Ν., <b><span id="diefthinsiSpanNom">....</b></span>        
+            <!-- <p id="nomikoNom"> <b>- Μόνο όταν γίνει ο προασφαλιστικός έλεγχος, διαβάζουμε νομικό.</b></p> -->
+        
+            <p><u>ΝΟΜΙΚΟ ΚΕΙΜΕΝΟ:</u> <br> <br>
+                <img id="cyFlag" src="images/Greek.png" alt=""><br>
+                Αγαπητέ Κύριε/α <b><span id="eponimoSpan5">....</span></b> , <br>
+                Σας ενημερώνουμε ότι για τη δική σας ασφάλεια, η κλήση μας καταγράφεται. <br>
+                Δηλώσατε ότι είστε εξουσιοδοτημένος από την εταιρία <b><span id="legalRegNomSpan" >...</span></b> να ζητήσετε στο συμβόλαιο με αριθμό <b><span id="policySpan5">....</span></b>  και αριθμό εγγραφής <b><span id="regSpan5">....</span></b> , <br>
+                να πραγματοποιηθεί αλλαγή της διεύθυνσης σε <b><span id="odosSpan5" >....</span></b> επαρχία <b><span id="eparchiaSpanNom">....</span></b>, ταχυδρομικό κώδικα <b><span id="tkSpan5">....</span></b>, η οποία <br>
+                αναγράφεται σε λογαριασμό κοινής ωφελείας και τον οποίο η Interamerican έχει δικαίωμα να ζητήσει στα πλαίσια δειγματοληπτικού ελέγχου. <br>
+                Συμφωνείτε να προχωρήσουμε στην αλλαγή;</p> <br>
+        
+            <p><img id="ukFlag" src="images/English.png" alt=""><br>
+                Dear Mr/Ms <b><span id="eponimoSpan6">....</span></b> ,<br>
+                We would like to inform you that this call is being recorded for security purposes. <br>
+                You have been authorised by the company <b><span id="legalRegNomSpan2" >...</span></b> to request to change the address of your permanent residence for the policy number <b><span id="policySpan6">....</span></b>, <br>
+                and registration number <b><span id="regSpan6">....</span></b>, to <b><spa id="odosSpan6">....</span></b> province <b><span id="eparchiaSpanNom2">....</span></b> and postal code <b><span id="tkSpan6">....</span></b>. The new address should be verified by a ultility bill, <br>
+                a copy of which Interamerican Hellenic Insurance Company S.A. is authorised to request, as part of a sample audit. <br>
+                Do you agreee to proceed with this alteration? <br>
+            </p> <br>
+            <br>
+            <h3>Όταν <u>αλλάζει</u> η επαρχία:</h3>
+            <p id="nomikoNom"><b>- Εδώ προχωράμε μόνο όταν παραλάβουμε τον λογαριασμό κοινής ωφελίας και υπάρχει σχετικό αίτημα εξυπηρέτησης από το Back Office.</b></p>
+            <p><u>ΑΙΤΗΜΑ ΕΞΥΠΗΡΕΤΗΣΗΣ:</u></p>
+                   <span>ΑΛΛΑΓΕΣ-> ΔΙΕΥΘΥΝΣΗ -> Περιγραφή: Δ.Ν., <b><span id="diefthinsiSpanNom2">....</b></span></span> <br> <br>
+                   <p><u>ΝΟΜΙΚΟ ΚΕΙΜΕΝΟ</u>: <br> <br>
+            <img id="cyFlag" src="images/Greek.png" alt=""><br>
+                Αγαπητέ Κύριε/α <b><span id="eponimoSpan7">....</span></b> , <br>
+                Σας ενημερώνουμε ότι για τη δική σας ασφάλεια, η κλήση μας καταγράφεται. <br>
+                Δηλώσατε ότι είστε εξουσιοδοτημένος από την εταιρία <b><span id="legalRegNomSpan3" >...</span></b> να ζητήσετε στο συμβόλαιο με αριθμό <b><span id="policySpan7">....</span></b>  και αριθμό εγγραφής <b><span id="regSpan7">....</span></b> , <br>
+                να πραγματοποιηθεί αλλαγή της διεύθυνσης σε <b><span id="odosSpan7">....</span></b> επαρχία <b><span id="eparchiaSpanNom3">....</span></b>, ταχυδρομικό κώδικα <b><span id="tkSpan7">....</span></b>, από <b><span id="dateSpan3">....</span></b>
+                Συμφωνείτε να προχωρήσουμε στην αλλαγή;</p> <br>
+        
+            <p><img id="ukFlag" src="images/English.png" alt=""><br>
+                Dear Mr/Ms <b><span id="eponimoSpan8">....</span></b> ,<br>
+                We would like to inform you that this call is being recorded for security purposes. <br>
+                You have been authorised by the company <b><span id="legalRegNomSpan4" >....</span></b> to request to change the address of the address for the policy number <b><span id="policySpan8">....</span></b>, <br>
+                and registration number <b><span id="regSpan8">....</span></b>, to <b><span id="odosSpan8">....</span></b> province <b><span id="eparchiaSpanNom4">....</span></b> and postal code <b><span id="tkSpan8">....</span></b> as from the <b><span id="dateSpan4">....</span></b>
+
+            <br>
+            <br>
+
+            <!-- <span> ------ Εάν δεν μπορεί να γίνει από Ask Me (π.χ. υπάρχουν 2 ή 2+ αλλαγές), πάει <b>ανάθεση</b>. ------ </span> -->
+        
+           
+           <!-- <br><h2>ΜΕΙΩΤΙΚΗ:</h2><br>
+        
+           <p>Γίνεται από ASK ME.</p>
+        
+           <p><u>ΝΟΜΙΚΟ ΚΕΙΜΕΝΟ:</u> <br> <br>
+            <img id="cyFlag" src="images/Greek.png" alt=""><br>
+            Αγαπητέ Κύριε/α <b><span id="eponimoSpan7">....</span></b>, <br>
+            Σας ενημερώνουμε ότι για τη δική σας ασφάλεια, η κλήση μας καταγράφεται. <br>
+            Δηλώσατε ότι είστε εξουσιοδοτημένος από την εταιρία <b><span id="legalRegSpan3">....</span></b> να ζητήσετε στο συμβόλαιο με αριθμό <b><span id="policySpan7">....</span></b> και αριθμό εγγραφής <b><span id="regSpan7">....</span></b>, <br>
+            να μετατραπεί το ασφαλιζόμενο κεφάλαιο σε €<b><span id="axiaSpan12">....</span></b> από <b><span id="dateSpan12">...</span></b>. <br>
+            Συμφωνείτε να προχωρήσουμε στην αλλαγή;</p> <br>
+        
+        <p><img id="ukFlag" src="images/English.png" alt=""> <br>
+            Dear Mr/Ms <b><span id="eponimoSpan8">....</span></b>, <br>
+            We would like to inform you that this call is being recorded for security purposes. <br>
+            You have been authorised by the company <b><span id="legalRegSpan4">....</span></b> to request to change the insured value of your vehicle for the policy number <b><span id="policySpan8">....</span></b>, <br>
+            and registration number <b><span id="regSpan8">....</span></b> to €<b><span id="axiaSpan13">....</span></b> as from the <b><span id="dateSpan13">...</span></b>. <br>
+            Do you agreee to proceed with this alteration? <br>
+        </p>
+        
+        <p><u>ΑΙΤΗΜΑ ΕΞΥΠΗΡΕΤΗΣΗΣ:</u></p>
+        Αλλ.ASK Me -> ΑΣΦΑΛΙΖΟΜΕΝΟ ΚΕΦΑΛΑΙΟ CC -> Περιγραφή: Δ.Ν., Αξία σε €<b><span id="axiaSpan14">....</span></b>, ισχύει από <b><span id="dateSpan14">...</span></b>.
+        
+         -->
+        
+        
+        
+        </div>
+        
+        <!-- ΑΛΛΟ ΠΡΟΣΩΠΟ -->
+        
+        <div id="ifOther" style="display: none;">
+        
+        
+            <p>Ενημερώνουμε να μας καλέσει ο ιδιοκτήτης.</p>
+        
+            <p><b>Εναλλακτικά:</b></p>
+        
+            <p>
+                1. Να αποσταλεί email αλλαγής στο motor@anytimeonline.com.cy όπου θα πρέπει να αναγράφεται ο αριθμός εγγραφής ή <br>
+                αριθμός συμβολαίου από το ΔΗΛΩΜΕΝΟ email. (δεν αναφέρουμε εμείς το δηλωμένο email, μπορούμε μόνο να το επιβεβαιώσουμε.) <br><br>
+                2. Αν στείλει email θα πάρει auto reply και θα πάρει την πρόσθετη πράξη σε 2 εργάσιμες. <br><br>
+                3.Εάν μας στείλει απο άλλο email θα πρέπει να επισυνάψει ταυτότητα ιδιοκτήτη μπροστά και πίσω.
+            </p>
+        
+        
+        
+        </div>
+
+
+
+
+
+</body>
+</html>

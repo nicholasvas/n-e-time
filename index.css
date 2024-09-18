@@ -1,0 +1,29 @@
+@media screen and (min-width: 480px) {
+    body {
+      margin: 60px;
+    }
+    #allagiAxias {
+      background-color: rgb(39, 205, 147);
+
+    }
+
+    #allagiDief {
+      background-color: rgb(39, 205, 147);
+
+    }
+
+    #allagiDiarkeias {
+      background-color: rgb(39, 205, 147);
+    }
+
+    #exousiodotisi {
+      background-color: rgb(39, 205, 147);
+    }
+
+  }
+
+  @media screen and (max-width: 479px) {
+    body {
+      margin: 45px;
+    }
+  }
